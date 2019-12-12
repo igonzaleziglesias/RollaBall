@@ -13,6 +13,7 @@
     // el animator
     Animator animator;
 
+    //el enemigo predice el movimiento de la bola e intenta alcanzarla
     void Start () {
           
           agent = GetComponent<NavMeshAgent>();
