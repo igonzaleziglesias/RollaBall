@@ -24,9 +24,9 @@ GameObject boton;
         boton.SetActive(false);
     }
 
-    void FixedUpdate ()
+    void FixedUpdate ()//actualizando la posicion de la bola(mover al centro si ganamos) 
     {   
-        if(!winText.text.Equals("Gañaches meu!")){
+        if(!winText.text.Equals("Gañaches meu!")){//si no ganamos(estamos jugando), movimiento de la bola
             float moveHorizontal = Input.GetAxis ("Horizontal");
             float moveVertical = Input.GetAxis ("Vertical");
 
@@ -36,37 +36,37 @@ GameObject boton;
         
         }else{
     
-            gameObject.transform.position=Vector3.zero;
+            gameObject.transform.position=Vector3.zero;//ganamos, posicionamos en el centro
         }
     
     }
 
-    void OnTriggerEnter(Collider other) 
-    {
+    void OnTriggerEnter(Collider other) //ir recogiendo objetos
+    {   //con pick ups
         if (other.gameObject.CompareTag ( "Pick Up"))
         {
-            other.gameObject.SetActive (false);
-            count = count + 1;
+            other.gameObject.SetActive (false);//los hacemos invisibles
+            count = count + 1;//aumentamos el contador
             SetCountText ();
         }
 
-
+        //con el enemigo
         if (other.gameObject.CompareTag ( "Enemy"))
         {
-            winText.text = "Perdeches!!!";
-            gameObject.SetActive (false);
-            other.gameObject.SetActive(false);
-            boton.SetActive(true);
+            winText.text = "Perdeches!!!";//actualizamos el mensaje de final de partida
+            gameObject.SetActive (false);//hacemos daesaparecer la bola
+            other.gameObject.SetActive(false);//hacemos invisible el enemigo
+            boton.SetActive(true);//aparece el boton para volver a empezar
         }
     }
 
-    void SetCountText ()
+    void SetCountText ()//actualizar el contador
     {
         countText.text = "Count: " + count.ToString ();
-        if (count >= 64)
+        if (count >= 64)//condicion de victoria
         {
-            winText.text = "Gañaches meu!";
-            enemy.gameObject.SetActive(false); 
+            winText.text = "Gañaches meu!";//mensaje de victoria
+            enemy.gameObject.SetActive(false); //desactiva al enemigo
             boton.SetActive(true);       
         }
     }
