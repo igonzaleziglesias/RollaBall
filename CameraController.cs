@@ -7,12 +7,12 @@ public class CameraController : MonoBehaviour {
 
     private Vector3 offset;
 
-    void Start ()
+    void Start ()//posicion de la camara
     {
         offset = transform.position - player.transform.position;
     }
     
-    void LateUpdate ()
+    void LateUpdate ()//ectualizar la posicion de la camara para que siga a la bola
     {
         transform.position = player.transform.position + offset;
     }
